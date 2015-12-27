@@ -46,7 +46,7 @@ class Invoice(models.Model):
 
 
 class Item(models.Model):
-
+    title = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     price = models.DecimalField(default=1, max_digits=19, decimal_places=3)
     vat = models.DecimalField(default=1, max_digits=10, decimal_places=3)
