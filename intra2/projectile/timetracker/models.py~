@@ -96,7 +96,7 @@ class Rate(models.Model):
     """
     project = models.ForeignKey(Project)
     profile = models.ForeignKey(settings.AUTH_USER_MODEL)
-    #title = models.CharField(max_length=100, blank=True, verbose_name=_())
+    title = models.CharField(max_length=100, blank=True, verbose_name=_())
     price = models.DecimalField(default=1, max_digits=19, decimal_places=3)
     vat = models.DecimalField(default=1, max_digits=19, decimal_places=3)
     created_at = models.DateTimeField(auto_now_add=True)
