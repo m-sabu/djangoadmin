@@ -1,0 +1,168 @@
+<div class="panel panel-default">
+
+    <div class="panel-body">
+
+        <div class="row row-vertical-squeeze" ng-show="kind === 'COLLECTOR'">
+            <div class="col-sm-12">
+                <h2 class="text-center">{{ me.getActiveOrganisation().name }}</h2>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-4">
+                <div class="text-center">
+                    <h2>{{ kpis.revenue | intFormat }} SEK</h2>
+
+                    <p class="text-kpi">{{ 'revenue' | translate | uppercase }}</p>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="text-center">
+                    <h2>{{ kpis.visits | intFormat }}</h2>
+
+                    <p class="text-kpi">{{ 'visits' | translate | uppercase }}</p>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="text-center">
+                    <h2>{{ kpis.worked_hours | intFormat }}</h2>
+
+                    <p class="text-kpi">{{ 'worked_hours' | translate | uppercase }}</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-4">
+                <div class="text-center">
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="text-center">
+                    <h4>{{ (revenuePerVisit | intFormatNotFinite) || '-' }}</h4>
+
+                    <p class="text-kpi">SEK / {{ 'visit' | translate | uppercase }}</p>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="text-center">
+                    <h4>{{ (revenuePerWorkedHour | intFormatNotFinite) || '-' }}</h4>
+
+                    <p class="text-kpi">SEK / {{ 'worked_hour' | translate | uppercase }}</p>
+                </div>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="row row-tighter">
+            <div class="col-sm-4" style="height: 30px;">
+
+                <ui-select ng-model="organisation.selected" on-select="fetchGraph($item, $model)">
+
+                    <ui-select-match placeholder="{{ 'placeholder.search_and_compare' | translate }}">{{ $select.selected.name }}</ui-select-match>
+                    <ui-select-choices group-by="groupByFunc" repeat="organisation in organisations | filter: $select.search">
+                        <span ng-bind-html="organisation.name | highlight: $select.search"></span>
+                    </ui-select-choices>
+
+                </ui-select>
+
+            </div>
+
+            <div class="col-sm-3" style="height: 30px;">
+
+                <form>
+                    <select class="form-control" ng-change="metricChanged()" ng-model="metric">
+                        <option value="1">{{ 'revenue' | translate }}</option>
+                        <option value="2">{{ 'visits' | translate }}</option>
+                        <option value="3">{{ 'worked_hours' | translate }}</option>
+                        <option value="4">{{ 'receipts' | translate }}</option>
+                    </select>
+                </form>
+
+            </div>
+
+            <div class="col-sm-5" style="height: 30px;">
+
+                <div class="row row-tighter">
+
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <p class="input-group">
+                                <input type="text"
+                                       class="form-control"
+                                       datepicker-popup ng-model="firstDatePicker.dt"
+                                       is-open="firstDatePicker.opened"
+                                       min-date="firstDatePicker.minDate"
+                                       datepicker-options="dateOptions"
+                                       show-button-bar="false"
+                                       ng-required="true"
+                                       close-text="Close"
+                                       ng-disabled="true"
+                                       ng-change="dateChanged()"/>
+                                <span class="input-group-btn">
+                                    <button type="button"
+                                            class="btn btn-default"
+                                            ng-click="firstDatePicker.open($event)">
+                                        <i class="entypo entypo-calendar"></i>
+                                    </button>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <p class="input-group">
+                                <input type="text"
+                                       class="form-control"
+                                       datepicker-popup
+                                       ng-model="lastDatePicker.dt"
+                                       is-open="lastDatePicker.opened"
+                                       min-date="lastDatePicker.minDate"
+                                       datepicker-options="dateOptions"
+                                       show-button-bar="false"
+                                       ng-required="true"
+                                       close-text="Close"
+                                       ng-disabled="true"
+                                       ng-change="dateChanged()"/>
+                                <span class="input-group-btn">
+                                    <button type="button"
+                                            class="btn btn-default"
+                                            ng-click="lastDatePicker.open($event)">
+                                        <i class="entypo entypo-calendar"></i>
+                                    </button>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div style="background-color: #fff; height: 440px; padding: 20px 0; overflow: hidden;">
+                    <div id="chart-container" width="100%">
+                        <highcharts-graph></highcharts-graph>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

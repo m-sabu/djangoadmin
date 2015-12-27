@@ -1,0 +1,34 @@
+<div class="modal-header">
+    <button ng-click="cancel()" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4>{{ 'add_reporting_unit' | translate }}</h4>
+</div>
+<div class="modal-body">
+
+    <form role="form" ng-submit="submit($event);">
+
+        <div class="form-group">
+            <label for="title">{{ 'name' | translate }}</label>
+            <input type="text" class="form-control" id="name" ng-model="form.name" placeholder="{{ 'placeholder.enter_your_name' | translate }}" />
+        </div>
+        <div class="alert alert-danger" ng-show="form.errors.title">
+            <p ng-repeat="error in form.errors.title">{{ error }}</p>
+        </div>
+
+        <div class="form-group">
+            <label for="organisation_no">{{ 'organisation_no' | translate }}</label>
+            <input
+                type="text"
+                class="form-control"
+                id="organisation_no"
+                ng-model="form.organisation_no"
+                placeholder="{{ 'placeholder.enter_organisation_no' | translate }}" />
+        </div>
+        <div class="alert alert-danger" ng-show="form.errors.organisation_no">
+             <p ng-repeat="error in form.errors.organisation_no">{{ error }}</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary">{{ 'save' | translate }}</button>
+
+    </form>
+</div>
+

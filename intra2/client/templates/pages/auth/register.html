@@ -1,0 +1,73 @@
+<div class="container-fluid">
+
+    <div class="hero">
+
+        <div class="row" ng-controller="OrganisationRegisterFormCtrl">
+            <div class="col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4 text-center">
+
+                <img ng-src="{{ 'img/avance-white.png' | staticfile }}" class="logo logo-form">
+
+                <div class="panel panel-default" ng-hide="isSuccess">
+
+                    <div class="panel-body">
+
+                        <h3 class="text-center">{{ 'almost_there' | translate }}</h3>
+
+                        <h5 class="text-center" ng-bind-html="'campaign.free_30_days' | translate"></h5>
+
+                        <hr>
+
+                        <form class="form-group-lg"
+
+                              ng-submit="register()">
+
+                            <div class="row" ng-repeat="field in fields">
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" ng-model="form[field.name]" placeholder="{{ field.placeholder | translate }}">
+                                    <div class="alert alert-danger" ng-show="form.errors && form.errors[field.name]">
+                                        <p ng-repeat="error in form.errors[field.name]">{{ error }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" ng-model="form.isDisabled">
+                                    <span ng-bind-html="'accept_tos' | translate"></span>
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block btn-lg" ng-disabled="!form.isDisabled">{{ 'proceed' | translate }}</button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+                <div class="panel panel-default" ng-show="isSuccess">
+
+                    <div class="panel-body">
+
+                        <br>
+                        <br>
+
+                        <p><img ng-src="{{ 'img/envelope-large.png' | staticfile }}" alt="Envelope" style="width: 60%; height: auto;"></p>
+
+                        <br>
+
+                        <h4 class="text-center">{{ 'thank_you' | translate }}</h4>
+                        <h5 class="text-center">{{ 'registration.activation_mail_sent' | translate }}</h5>
+
+                        <br>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

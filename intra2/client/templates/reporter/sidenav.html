@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-sm-12">
+        <h4>{{ reporter.name }}</h4>
+    </div>
+</div>
+
+<br>
+
+<ul class="nav nav-sidebar">
+
+    <li ui-sref-active-eq="active">
+        <a ui-sref="reporter.overview({id: reporter.id})">
+            <i class="entypo entypo-chevron-with-circle-right"></i> {{ 'overview' | translate }}
+        </a>
+    </li>
+
+    <li ui-sref-active="active">
+        <a ui-sref="reporter.reports({id: reporter.id})">
+            <i class="entypo entypo-chevron-with-circle-right"></i> {{ 'report' | translate }}
+        </a>
+    </li>
+
+    <li ui-sref-active="active" ng-show="reporter.literal_kind === 'REPORTER'">
+        <a ui-sref="reporter.settings({id: reporter.id})">
+            <i class="entypo entypo-chevron-with-circle-right"></i> {{ 'settings' | translate }}
+        </a>
+    </li>
+
+</ul>

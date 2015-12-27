@@ -1,0 +1,7 @@
+<span ng-switch="metric">
+    <span ng-switch-when="1">{{ (item.total | floatFormat: 2) || 0 }} SEK</span>
+    <span ng-switch-when="2">{{ (item.total | intFormat) || 0 }}</span>
+    <span ng-switch-when="3">{{ (item.total | floatFormat: 2) || 0 }}</span>
+    <span ng-switch-when="4">{{ (item.total | intFormat) || 0 }}</span>
+    <span ng-switch-default></span>
+</span>

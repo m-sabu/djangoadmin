@@ -1,0 +1,103 @@
+<div class="container-fluid">
+    <br>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <div class="row row-vertical-squeeze row-tighter">
+                <div class="col-sm-3">
+                    <h2>{{ title | translate }}</h2>
+                </div>
+
+                <div class="col-sm-7">
+                    <div class="row row-tighter">
+
+                        <div class="col-sm-4 text-right" style="max-height: 30px;" ng-show="filterable">
+                            <form>
+                                <select class="form-control" ng-change="metricChanged()" ng-model="metric">
+                                    <option value="1">{{ 'revenue' | translate }}</option>
+                                    <option value="2">{{ 'visits' | translate }}</option>
+                                    <option value="3">{{ 'worked_hours' | translate }}</option>
+                                    <option value="4">{{ 'receipts' | translate }}</option>
+                                </select>
+                            </form>
+                        </div>
+
+                        <div class="col-sm-3" style="max-height: 30px;" ng-show="filterable">
+                            <div class="form-group">
+                                <p class="input-group">
+                                    <input type="text"
+                                           class="form-control"
+                                           datepicker-popup ng-model="firstDatePicker.dt"
+                                           is-open="firstDatePicker.opened"
+                                           min-date="firstDatePicker.minDate"
+                                           datepicker-options="dateOptions"
+                                           show-button-bar="false"
+                                           ng-required="true"
+                                           close-text="Close"
+                                           ng-disabled="true"
+                                           ng-change="dateChanged()" />
+                                    <span class="input-group-btn">
+                                        <button type="button"
+                                                class="btn btn-default"
+                                                ng-click="firstDatePicker.open($event)"
+                                                ng-disabled="!filterable">
+                                            <i class="entypo entypo-calendar"></i>
+                                        </button>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3" style="max-height: 30px;" ng-show="filterable">
+                            <div class="form-group">
+                                <p class="input-group">
+                                    <input type="text"
+                                           class="form-control"
+                                           datepicker-popup
+                                           ng-model="lastDatePicker.dt"
+                                           is-open="lastDatePicker.opened"
+                                           min-date="lastDatePicker.minDate"
+                                           datepicker-options="dateOptions"
+                                           show-button-bar="false"
+                                           ng-required="true"
+                                           close-text="Close"
+                                           ng-disabled="true"
+                                           ng-change="dateChanged()" />
+                                    <span class="input-group-btn">
+                                        <button type="button"
+                                                class="btn btn-default"
+                                                ng-click="lastDatePicker.open($event)"
+                                                ng-disabled="!filterable">
+                                            <i class="entypo entypo-calendar"></i>
+                                        </button>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-2 pull-right">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" ng-model="filterable" ng-click="get()"> {{ 'aggregate' | translate }}
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-sm-2">
+                    <a ng-click="add($event);" class="btn btn-primary btn-block btn-md">&#10010; {{ 'add_new' | translate }}</a>
+                </div>
+            </div>
+
+            <hr>
+
+            <ng-include src="listTemplate"></ng-include>
+
+        </div>
+    </div>
+
+</div>

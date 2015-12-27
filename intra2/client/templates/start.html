@@ -1,0 +1,46 @@
+<div ng-controller="LandingCtrl">
+
+    <div class="jumbotron">
+        <div class="container flex-container flex-center">
+            <div class="col-sm-5 col-sm-offset-1">
+                <ng-include src="'general/logo-light.html'"></ng-include>
+
+
+                <h4>Vi ger dig en tydlig överblick av din försäljning, konvertering och hur du presterar.</h4>
+
+                <ul>
+                    <li>Avance gör datanstamlingen enkel och supersnabb</li>
+                    <li>Få en tydlig överblick av dina KPIer</li>
+                    <li>Grunda dina beslut på färsk information</li>
+                </ul>
+            </div>
+            <div class="col-sm-6 text-center hidden-xs">
+                <img ng-src="{{ 'img/avance-iphone.png' | appendStatic }}">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<ng-include src="'landing/infographic-1-section.html'"></ng-include>
+
+<div class="container">
+    <ng-include src="'landing/how-section.html'" id="how-it-works"></ng-include>
+</div>
+
+<!--<ng-include src="'landing/testimonials-section.html'" id="about"></ng-include>-->
+
+<ng-include src="'landing/commercial-section-blue.html'"></ng-include>
+
+
+
+<!--<ng-include src="'landing/price-plans.html'" id="pricing"></ng-include>-->
+
+<!--<ng-include src="'landing/commercial-section.html'"></ng-include>-->
+
+<ng-include src="'landing/contact-section.html'" id="contact"></ng-include>
+
+<ng-include src="'landing/footer.html'"></ng-include>
+

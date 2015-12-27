@@ -1,0 +1,57 @@
+<div ng-controller="UserListCtrl" class="panel panel-default">
+
+    <div class="panel-body">
+
+        <div class="row row-vertical-squeeze">
+            <div class="col-sm-9 col-md-10">
+                <h2>{{ 'users' | translate }}</h2>
+            </div>
+            <div class="col-sm-3 col-md-2 text-right">
+                <a ng-click="addUser($event);" class="btn btn-primary btn-block btn-md">&#10010; {{ 'add_new' | translate }}</a>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <spinner collection="users"></spinner>
+                <div class="table-responsive" ng-show="users.length > 0">
+                    <table class="table table-striped table-with-buttons">
+                        <thead>
+                        <tr>
+                            <th>{{ 'email' | translate }}</th>
+                            <th>{{ 'name' | translate }}</th>
+                            <th class="text-right">{{ 'access' | translate }}</th>
+                            <th class="text-right">{{ 'created' | translate }}</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="user in users">
+                            <td>{{ user.profile.email }}</td>
+                            <td>{{ user.profile.first_name }} {{ user.profile.last_name }}</td>
+                            <td class="text-right">
+                                <div ng-switch="user.access">
+                                    <span class="label label-default" ng-switch-when="0" tooltip="Read">{{ 'access.read' | translate }}</span>
+                                    <span class="label label-primary" ng-switch-when="1" tooltip="Read & Write">{{ 'access.read_and_write' | translate }}</span>
+                                    <span class="label label-danger" ng-switch-when="2" tooltip="Administrator">{{ 'access.administrator' | translate }}</span>
+                                </div>
+                            </td>
+                            <td class="text-right"><span am-time-ago="user.created_at"></span></td>
+                            <td class="text-right">
+                                <a ng-click="" class="btn btn-default btn-sm">
+                                    <i class="entypo entypo-chevron-with-circle-right"></i>
+                                </a>
+                                <a ng-click="confirmRemove(user);" class="btn btn-default btn-sm">&#10006;</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

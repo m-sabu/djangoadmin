@@ -1,0 +1,51 @@
+<div class="modal-header">
+    <button ng-click="cancel()" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4>{{ 'add_user' | translate }}</h4>
+</div>
+
+<div class="modal-body">
+
+    <form role="form" ng-submit="submit($event);">
+
+        <div class="form-group">
+            <label for="email">{{ 'email' | translate }}</label>
+            <input type="email" class="form-control" id="email" ng-model="form.email" placeholder="{{ 'placeholder.enter_email' | translate }}" />
+        </div>
+        <div class="alert alert-danger" ng-show="form.errors.email">
+            <p ng-repeat="error in form.errors.email">{{ error }}</p>
+        </div>
+
+        <div class="form-group">
+            <label for="first_name">{{ 'first_name' | translate }}</label>
+            <input type="text" class="form-control" id="first_name" ng-model="form.first_name" placeholder="{{ 'placeholder.enter_first_name' | translate }}" />
+        </div>
+        <div class="alert alert-danger" ng-show="form.errors.first_name">
+             <p ng-repeat="error in form.errors.first_name">{{ error }}</p>
+        </div>
+
+        <div class="form-group">
+            <label for="last_name">{{ 'last_name' | translate }}</label>
+            <input type="text" class="form-control" id="last_name" ng-model="form.last_name" placeholder="{{ 'placeholder.enter_last_name' | translate }}" />
+        </div>
+        <div class="alert alert-danger" ng-show="form.errors.last_name">
+             <p ng-repeat="error in form.errors.last_name">{{ error }}</p>
+        </div>
+
+        <div class="form-group">
+            <label for="access">{{ 'access' | translate }}</label>
+            <select class="form-control" id="access" ng-model="form.access">
+                <option value="0">{{ 'access.read' | translate }}</option>
+                <option value="1">{{ 'access.read_and_write' | translate }}</option>
+                <option value="2">{{ 'access.administrator' | translate }}</option>
+            </select>
+        </div>
+        <div class="alert alert-danger" ng-show="form.errors.access">
+             <p ng-repeat="error in form.errors.access">{{ error }}</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary">{{ 'save' | translate }}</button>
+
+    </form>
+
+</div>
+

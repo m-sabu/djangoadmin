@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="projectile" ng-controller="AppCtrl">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AVANCE.iO</title>
+
+    <link href='//fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Pacifico:400,300,700' rel='stylesheet' type='text/css'>
+    <link href="{{ APP_URL }}css/bootstrap.css" rel="stylesheet">
+</head>
+
+<body>
+
+    {% csrf_token %}
+    <script>
+        window.CONFIG = {};
+        window.CONFIG.CSRF_TOKEN = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+        window.CONFIG.RELEASE_TAG = "{{ RELEASE_TAG }}";
+        window.CONFIG.STATIC_URL = "{{ APP_URL }}";
+        window.CONFIG.COUNTRY = "{{ COUNTRY }}";
+        window.CONFIG.LANGUAGE = "{{ LANGUAGE }}";
+    </script>
+
+    {% verbatim %}
+        <ng-include src="'base.html'">
+            <!-- Base included from client -->
+        </ng-include>
+    {% endverbatim %}
+
+    {% if debug %}
+        <script src="{{ APP_URL }}js/app.js?_={{ RELEASE_TAG }}"></script>
+    {% else %}
+        <script src="{{ APP_URL }}js/app.min.js?_={{ RELEASE_TAG }}"></script>
+    {% endif %}
+
+</body>
+
+</html>

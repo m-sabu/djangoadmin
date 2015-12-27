@@ -1,0 +1,30 @@
+<div ng-controller="MultipleReportExcelUploadCtrl">
+
+    <div class="modal-header">
+        <button ng-click="cancel()" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4>{{ 'master_import' | translate }}</h4>
+    </div>
+
+    <div class="modal-body">
+
+        <form role="form" ng-show="showUploadForm">
+            <div class="form-group well">
+                <input class="form-control" type="file" id="file" name="file" file-model="element.file" custom-on-change="uploadFile"/>
+            </div>
+        </form>
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                <p class="alert alert-success" ng-repeat="msg in feedback.success">
+                    <small>{{ msg }}</small>
+                </p>
+
+                <p class="alert alert-danger" ng-repeat="msg in feedback.errors">
+                    <small>{{ msg }}</small>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</div>

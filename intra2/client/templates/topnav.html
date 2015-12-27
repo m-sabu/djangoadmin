@@ -1,0 +1,95 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-show="hasTopNav">
+
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar"
+                    ng-click="isCollapsed = !isCollapsed">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" ui-sref="start">
+                <img ng-src="{{ 'img/avance-white.png' | staticfile }}" style="width: auto; height: 22px;">
+            </a>
+        </div>
+
+        <ul class="nav navbar-nav" ng-if="isAuthenticated">
+
+            <li ui-sref-active="active" ng-if="me.isCollector()">
+                <a ui-sref="dashboard"><i class="entypo entypo-blackboard"></i> {{ 'dashboard' | translate }}</a>
+            </li>
+
+            <li ui-sref-active="active" ng-if="me.isCollector()" ng-class="{active: $state.includes('segment')}">
+                <a ui-sref="segments"><i class="entypo entypo-pie-chart"></i> {{ 'segments' | translate }}</a>
+            </li>
+
+            <li ui-sref-active="active" ng-if="me.isCollector()" ng-class="{active: $state.includes('reporter')}">
+                <a ui-sref="reporters">{{ 'reporting_units' | translate }}</a>
+            </li>
+
+            <li ui-sref-active="active" ng-if="me.getActiveUser().access > 0">
+                <a ui-sref="users"><i class="entypo entypo-users"></i> {{ 'users' | translate }}</a>
+            </li>
+
+        </ul>
+
+        <div class="pull-right" ng-if="isAuthenticated">
+            <div class="btn-group" dropdown>
+                <button type="button" class="btn btn-info navbar-btn"><i class="entypo entypo-user"></i> {{ me.first_name }} {{ me.last_name }}</button>
+                <button type="button" class="btn btn-info navbar-btn dropdown-toggle" dropdown-toggle>
+                    <span class="caret"></span>
+                    <span class="sr-only">Split button!</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a style="cursor: default;">
+                            <h6>{{ me.getActiveOrganisation().title }}</h6>
+                            <div ng-switch="me.getActiveUser().access">
+                                <span class="label label-default" ng-switch-when="0">{{ 'access.read' | translate }}</span>
+                                <span class="label label-primary" ng-switch-when="1">{{ 'access.read_and_write' | translate }}</span>
+                                <span class="label label-danger" ng-switch-when="2">{{ 'access.administrator' | translate }}</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a ng-controller="TopnavCtrl" ng-click="showImportModal();">
+                            <i class="entypo entypo-add-to-list"></i>
+                            {{ 'master_import' | translate }}
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a><i class="entypo entypo-tools"></i> {{ 'account_settings' | translate }}</a></li>
+                    <li class="divider"></li>
+                    <li><a ng-click="logout();"><i class="entypo entypo-log-out"></i> {{ 'log_out' | translate }}</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="pull-right" ng-if="!isAuthenticated">
+            <a ui-sref="register" class="btn btn-info navbar-btn">{{ 'register' | translate }}</a>
+            <a ui-sref="login" class="btn btn-primary navbar-btn">{{ 'log_in' | translate }}</a>
+        </div>
+
+        <div class="pull-right" ng-if="isAuthenticated && me.organisations.length > 1" style="margin-right: 10px;">
+            <div class="btn-group" dropdown>
+                <button type="button" class="btn btn-default navbar-btn"><i class="entypo entypo-suitcase"></i> {{ me.getActiveOrganisation().name }}</button>
+                <button type="button" class="btn btn-default navbar-btn dropdown-toggle" dropdown-toggle>
+                    <span class="caret"></span>
+                    <span class="sr-only">Split button!</span>
+                </button>
+                <ul class="dropdown-menu" role="menu" ng-controller="OrganisationWrapperCtrl">
+                    <li ng-repeat="organisationWrapper in me.getOtherOrganisations()">
+                        <a ng-click="setActiveOrganisation(organisationWrapper.id)">{{ organisationWrapper.organisation.name }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <ng-include src="'alerts/top-alerts.html'"></ng-include>
+
+</nav>
+

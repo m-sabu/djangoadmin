@@ -1,0 +1,13 @@
+<div class="col-md-12">
+    <div class="col-md-12 text-center">
+        <nav ng-show="pages.length > 1">
+            <ul class="pagination pagination-sm">
+                <li ng-show="paginator.previous"><a ng-click="getReports(paginator.previous)" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                <li ng-repeat="page in pages" ng-class="{active: page == paginator.currentPage }">
+                    <a ng-click="getReports('?page=' + page)">{{ page }}</a>
+                </li>
+                <li ng-show="paginator.next"><a ng-click="getReports(paginator.next)" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</div>

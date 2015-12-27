@@ -1,0 +1,41 @@
+{% trans "Submit" as submit_default %}
+
+{% if form %}
+<form class="form-group-lg" action="." method="post">
+
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            <div class="row-fluid">
+                <div class="span8 alert alert-error">{{ error }}</div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% for field in form %}
+        <div class="row">
+            <div class="col-sm-12">
+                {{ field }}
+            </div>
+        </div>
+
+        {% if field.errors %}
+            {% for error in field.errors %}
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="alert alert-danger">
+                            {{ error }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary btn-block btn-lg">
+        {% if submit_phrase %}{{ submit_phrase }}{% else %}{{ submit_default }}{% endif %}
+    </button>
+
+</form>
+{% endif %}

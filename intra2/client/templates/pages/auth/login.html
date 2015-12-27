@@ -1,0 +1,51 @@
+<div class="container-fluid">
+
+    <div class="hero">
+
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4 text-center">
+
+                <img ng-src="{{ 'img/avance-white.png' | staticfile }}" class="logo logo-form">
+
+                <div class="panel panel-default">
+
+                    <div class="panel-body">
+
+                        <h2>{{ 'log_in' | translate }}</h2>
+
+                        <hr>
+
+                        <form class="form-group-lg" ng-controller="LoginFormCtrl" ng-submit="submit();">
+
+                            <div class="alert alert-danger" ng-show="form.errors.global">
+                                <p ng-repeat="error in form.errors.global">{{ error }}</p>
+                            </div>
+                            <hr ng-if="form.errors.global">
+
+                            <input type="email" class="form-control" ng-model="form.email" placeholder="{{ 'placeholder.enter_email' | translate }}">
+                            <div class="alert alert-danger" ng-show="form.errors.email">
+                                 <p ng-repeat="error in form.errors.email">{{ error }}</p>
+                            </div>
+
+                            <input type="password" class="form-control" ng-model="form.password" placeholder="{{ 'placeholder.enter_password' | translate }}">
+                            <div class="alert alert-danger" ng-show="form.errors.password">
+                                 <p ng-repeat="error in form.errors.password">{{ error }}</p>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block btn-lg">{{ 'proceed' | translate }}</button>
+
+                        </form>
+                        <br>
+                        <p class="text-center"><a ui-sref="forgot-password">{{ 'forgot_password' | translate }}</a></p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

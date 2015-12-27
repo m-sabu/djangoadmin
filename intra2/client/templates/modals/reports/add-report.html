@@ -1,0 +1,34 @@
+<div class="modal-header">
+    <button ng-click="cancel()" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4>{{ 'add_report' | translate }}</h4>
+</div>
+<div class="modal-body">
+
+    <form role="form" ng-submit="submit($event);">
+
+        <div class="form-group">
+            <label for="title">Date</label>
+            <p class="input-group">
+              <input type="text" class="form-control" datepicker-popup ng-model="datePicker.dt" is-open="datePicker.opened" min-date="datePicker.minDate" datepicker-options="datePicker.dateOptions" show-button-bar="false" ng-required="true" close-text="Close" ng-disabled="true" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePicker.open($event)" ng-disabled="disabledDate"><i class="entypo entypo-calendar"></i></button>
+              </span>
+            </p>
+        </div>
+        <div class="alert alert-danger" ng-show="form.errors.date">
+            <p ng-repeat="error in form.errors.date">{{ error }}</p>
+        </div>
+
+        <div class="form-group">
+            <label for="value">Value</label>
+            <input type="text" class="form-control" id="value" ng-model="form.value" placeholder="Enter value..." />
+        </div>
+        <div class="alert alert-danger" ng-show="form.errors.value">
+             <p ng-repeat="error in form.errors.value">{{ error }}</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+
+    </form>
+</div>
+

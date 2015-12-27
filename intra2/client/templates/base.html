@@ -1,0 +1,4 @@
+<ng-include src="'topnav.html'" ng-if="!isStartpage"></ng-include>
+<ng-include src="'topnav-landing.html'" ng-if="isStartpage"></ng-include>
+
+<div ui-view="FullContentView" ng-cloak class="ng-cloak"></div>

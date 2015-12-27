@@ -1,0 +1,43 @@
+.jumbotron {
+  padding-top:100px;
+  padding-bottom:50px;
+  background:url('../img/hero-bg.jpg');
+  background-repeat:no-repeat;
+  background-size:cover;
+  color:#fff;
+  margin-bottom: 0;
+
+  svg { margin-bottom:40px; }
+  h4 { font-size:22px; margin-bottom:40px; .opacity(0.9); }
+
+  ul {
+    font-size:18px;
+    padding:0;
+    margin:0;
+    list-style: none;
+    .opacity(0.9);
+
+    li {
+      position:relative;
+      padding-left:15px;
+      margin-bottom:5px;
+
+      &:before {
+        content:'';
+        width:6px;
+        height:6px;
+        border-radius:50%;
+        background-color:#fff;
+        display:block;
+        position:absolute;
+        top:50%;
+        left:0;
+        margin-top:-3px;
+      }
+
+      &:nth-child(1):before { background-color:@avance-blue-1; }
+      &:nth-child(2n):before { background-color:@avance-yellow-1; }
+      &:nth-child(3n):before { background-color:@avance-red-1; }
+    }
+  }
+}

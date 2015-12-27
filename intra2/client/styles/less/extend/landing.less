@@ -1,0 +1,204 @@
+// NAV
+.navbar-landing {
+  position:absolute;
+  left:0;
+  right:0;
+
+  ul.nav > li {
+    a {
+      border-bottom:3px solid transparent;
+      .transition(0.4s);
+
+      &:hover {
+        background: none !important;
+        border-color:#fff;
+      }
+    }
+  }
+
+  @media(max-width:@screen-sm){
+    position:relative;
+    background:@avance-red-1;
+
+    .container.visible-xs {
+      margin-top:15px;
+      span { color:#fff; }
+    }
+
+    ul.nav { width:100% !important; }
+    ul.nav > li {
+      width:100% !important;
+      text-align:left;
+    }
+
+    margin:0;
+  }
+  @media(min-width:@screen-sm){
+    .collapse {
+      height:auto !important;
+      display:block;
+      visibility: visible;
+    }
+  }
+}
+
+// COMMERCIAL SECTION
+.container-commercial {
+  position:relative;
+  padding:30px 0;
+  overflow:hidden;
+  color:#fff;
+
+  &.bg-red { background-color:@avance-red-1; }
+  &.bg-blue { background-color:@avance-blue-1; }
+
+  svg {
+    max-width:400px;
+  }
+
+  svg,p {
+    position:relative;
+    z-index:10;
+  }
+
+  p {
+    font-size: 18px;
+    margin:10px;
+  }
+
+  img {
+    position:absolute;
+    right:0;
+  }
+
+  .iphone-small {
+    top:-40px;
+  }
+  .ipad-small {
+    top:60px;
+  }
+}
+
+// TEXT RELATED TO COMMERCIAL BOX #2
+.text-slogan {
+  font-family:'Pacifico';
+  font-size:55px;
+
+  @media(min-width:@screen-lg){
+    font-size:75px;
+  }
+
+  @media(max-width:@screen-sm){
+    font-size:36px;
+  }
+}
+
+// TESTIMONIALS
+.testimonial-item {
+  position:relative;
+  overflow:hidden;
+  padding:120px 0;
+  height:650px;
+
+  &:nth-of-type(odd){
+    background:#f5f5f5;
+  }
+
+  p { margin:25px 0; }
+
+  img {
+    top:50%;
+    margin-top:-334px;
+    position:absolute;
+
+    &.align-left { left:0; }
+    &.align-right { right:0; }
+
+    .transition(0.4s);
+
+  }
+
+  @media(max-width:@screen-sm){
+    padding:30px 0;
+
+    img {
+      .opacity(0);
+    }
+
+  }
+}
+
+// CONTACT FORM SECTION
+.contact-section {
+  background-color:@avance-gray-dark;
+  color:#fff;
+
+  a:not(.btn) { color:@avance-red-1; }
+
+  label {
+    font-weight: normal;
+    margin-bottom:15px;
+  }
+}
+
+.btn-avance-red {
+  background:@avance-red-1;
+  color:#fff;
+
+  &:hover {
+    color:@gray-lighter;
+    background: #c74163;
+  }
+}
+
+
+// FOOTER SECTION
+
+.landing-footer {
+  background-color:#bcbdc0;
+  color:#fff;
+  position:relative;
+
+  .lead {
+    margin-top:15px;
+  }
+
+  svg {
+    max-width:260px;
+  }
+
+
+  .text-dark {
+    color:@avance-gray-dark;
+  }
+
+  .text-avance {
+    font-family:'Michroma';
+    font-weight:lighter;
+  }
+
+  .colored-border{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+
+    > div {
+      float:left;
+      width:25%;
+      height:10px;
+      &:nth-child(1){
+        background-color:@avance-red-1;
+      }
+      &:nth-child(2){
+        background-color:@avance-yellow-1;
+      }
+      &:nth-child(3){
+        background-color:@avance-blue-1;
+      }
+      &:nth-child(4){
+        background-color:@avance-gray-dark;
+      }
+    }
+  }
+}
